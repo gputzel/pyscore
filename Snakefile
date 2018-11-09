@@ -16,10 +16,23 @@ def input_movies():
                 movie_files.append(os.path.join(dirpath,x))
     return movie_files
 
-rule blah:
-    run:
-        for movie in input_movies():
-            print(movie)
+def process_video_input(wildcards):
+    middle = wildcards.middle
+    d = {
+            'movie':config['split-movies-path'] + '/' + middle + ".avi",
+        }
+    return d
+
+rule process_video:
+    input:
+        unpack(process_video_input)
+    output:
+        movie="output/{middle}.mp4",
+        diffs="output/{middle}.tsv"
+    conda:
+        "envs/image.yml"
+    script:
+        "scripts/test.py"
 
 rule test:
     input:
