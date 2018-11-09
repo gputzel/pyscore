@@ -32,7 +32,7 @@ rule process_video:
     conda:
         "envs/image.yml"
     script:
-        "scripts/test.py"
+        "scripts/process.py"
 
 rule test:
     input:
