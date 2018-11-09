@@ -1,3 +1,7 @@
+configfile: "config.json"
+
+print(config['split-movies-path'])
+
 rule test:
     input:
         movie="test/input/{name}.avi",
