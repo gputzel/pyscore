@@ -1,6 +1,25 @@
+import os
+
 configfile: "config.json"
 
-print(config['split-movies-path'])
+rule input_movie_list:
+    output:
+        "output/input_movies.txt"
+    shell:
+        'find ' + config['split-movies-path'] + ' -name "*.avi" > {output}'
+
+def input_movies():
+    movie_files=[]
+    for dirpath,subdirs,files in os.walk(config['split-movies-path']):
+        for x in files:
+            if x.endswith('.avi'):
+                movie_files.append(os.path.join(dirpath,x))
+    return movie_files
+
+rule blah:
+    run:
+        for movie in input_movies():
+            print(movie)
 
 rule test:
     input:
