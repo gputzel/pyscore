@@ -34,6 +34,18 @@ rule process_video:
     script:
         "scripts/process.py"
 
+rule plot:
+    input:
+        tsv="output/{middle}.tsv"
+    output:
+        pdf="output/{middle}.pdf"
+    script:
+        "scripts/plot.R"
+
+rule process_all:
+    input:
+        [f.replace(config['split-movies-path'],'output').replace('.avi','.pdf') for f in input_movies()]
+
 rule test:
     input:
         movie="test/input/{name}.avi",
@@ -45,7 +57,7 @@ rule test:
     script:
         "scripts/test.py"
 
-rule plot:
+rule plot_test:
     input:
         tsv="test/output/{name}.tsv"
     output:
