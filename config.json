@@ -1,3 +1,4 @@
 {
-    "split-movies-path":"/Volumes/JRI/misc_backup/Coco_FearConditioning/split-pipeline-output"
+    "split-movies-path":"/Volumes/JRI/misc_backup/Coco_FearConditioning/split-pipeline-output",
+    "freeze-signal-threshold":1.0
 }
