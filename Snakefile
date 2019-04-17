@@ -46,6 +46,19 @@ rule process_all:
     input:
         [f.replace(config['split-movies-path'],'output').replace('.avi','.pdf') for f in input_movies()]
 
+rule freeze_rate_single:
+    input:
+        diffs="output/{middle}.tsv"
+    output:
+        freeze="output/{middle}_freeze.txt"
+    script:
+        "scripts/freeze.py"
+
+rule freeze_rate_all:
+    input:
+        [f.replace(config['split-movies-path'],'output').replace('.avi','_freeze.txt') for f in input_movies()]
+
+
 rule test:
     input:
         movie="test/input/{name}.avi",
