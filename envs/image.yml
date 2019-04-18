@@ -1,0 +1,9 @@
+channels:
+    - conda-forge
+    - anaconda
+dependencies:
+    - scikit-image
+    - av
+    - numpy
+    - matplotlib
+    - imageio
